@@ -208,18 +208,23 @@ document.getElementById('text-input').addEventListener('input', function() {
 
 document.querySelector(".func #capital").addEventListener('input', function() {
    const outputBox = document.getElementById('output-box');
-   if(document.querySelector(".func #capital").checked) outputBox.value = outputBox.value.toUpperCase();
+   if (document.querySelector(".func #capital").checked) outputBox.value = outputBox.value.toUpperCase();
    else outputBox.value = outputBox.value.toLowerCase();
 });
 
 document.querySelector(".func #space-between").addEventListener('input', function() {
    const outputBox = document.getElementById('output-box');
-   if(document.querySelector(".func #space-between").checked) outputBox.value = outputBox.value.match(/.{1,8}/g).join(' ');
+   if (document.querySelector(".func #space-between").checked) outputBox.value = outputBox.value.match(/.{1,8}/g).join(' ');
    else outputBox.value = outputBox.value.replace(/ /g, "");
 });
 
 document.querySelector(".func #binary-output").addEventListener('input', function() {
+   const inputText = document.getElementById('text-input').value;
    const outputBox = document.getElementById('output-box');
-   if(document.querySelector(".func #binary-output").checked) outputBox.value = outputBox.value.split(' ').map(h => parseInt(h, 16).toString(2).padStart(32, '0')).join('');
-   else outputBox.value = hex(outputBox.value);
+   const binaryInput = bin(inputText);
+   const padding = pad(binaryInput);
+   const m = decompose(padding);
+   const h = hash(m);
+   if (document.querySelector(".func #binary-output").checked) outputBox.value = h;
+   else outputBox.value = hex(h);
 });
