@@ -199,32 +199,28 @@ function sha256(input) {
    return result;
 }
 
-document.getElementById('text-input').addEventListener('input', function() {
-   const inputText = document.getElementById('text-input').value;
-   var sha256_output = sha256(inputText);
-   const outputBox = document.getElementById('output-box');
-   outputBox.value = sha256_output;
-});
+document.getElementById('text-input').addEventListener('input', updateOutput);
+document.querySelector(".func #capital").addEventListener('input', updateOutput);
+document.querySelector(".func #space-between").addEventListener('input', updateOutput);
+document.querySelector(".func #binary-output").addEventListener('input', updateOutput);
 
-document.querySelector(".func #capital").addEventListener('input', function() {
-   const outputBox = document.getElementById('output-box');
-   if (document.querySelector(".func #capital").checked) outputBox.value = outputBox.value.toUpperCase();
-   else outputBox.value = outputBox.value.toLowerCase();
-});
-
-document.querySelector(".func #space-between").addEventListener('input', function() {
-   const outputBox = document.getElementById('output-box');
-   if (document.querySelector(".func #space-between").checked) outputBox.value = outputBox.value.match(/.{1,8}/g).join(' ');
-   else outputBox.value = outputBox.value.replace(/ /g, "");
-});
-
-document.querySelector(".func #binary-output").addEventListener('input', function() {
+function updateOutput() {
    const inputText = document.getElementById('text-input').value;
    const outputBox = document.getElementById('output-box');
-   const binaryInput = bin(inputText);
-   const padding = pad(binaryInput);
-   const m = decompose(padding);
-   const h = hash(m);
-   if (document.querySelector(".func #binary-output").checked) outputBox.value = h;
-   else outputBox.value = hex(h);
-});
+   let output = sha256(inputText);
+
+   if (document.querySelector(".func #capital").checked) output = output.toUpperCase();
+   else output = output.toLowerCase();
+
+   if (document.querySelector(".func #space-between").checked) output = output.match(/.{1,8}/g).join(' ');
+   else output = output.replace(/ /g, "");
+
+   if (document.querySelector(".func #binary-output").checked) {
+      const binaryInput = bin(inputText);
+      const padding = pad(binaryInput);
+      const m = decompose(padding);
+      output = hash(m);
+   }
+
+   outputBox.value = output;
+}
