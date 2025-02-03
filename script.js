@@ -204,18 +204,18 @@ function updateOutput() {
    const outputBox = document.getElementById('output-box');
    let output = sha256(inputText);
 
-   if (document.querySelector(".func #capital").checked) output = output.toUpperCase();
-   else output = output.toLowerCase();
-
-   if (document.querySelector(".func #space-between").checked) output = output.match(/.{1,8}/g).join(' ');
-   else output = output.replace(/ /g, "");
-
    if (document.querySelector(".func #binary-output").checked) {
       const binaryInput = bin(inputText);
       const padding = pad(binaryInput);
       const m = decompose(padding);
       output = hash(m);
    }
+
+   if (document.querySelector(".func #capital").checked) output = output.toUpperCase();
+   else output = output.toLowerCase();
+
+   if (document.querySelector(".func #space-between").checked) output = output.match(/.{1,8}/g).join(' ');
+   else output = output.replace(/ /g, "");
 
    outputBox.value = output;
 }
