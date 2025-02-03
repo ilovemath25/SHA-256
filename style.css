@@ -1,0 +1,99 @@
+*{
+   padding: 0;
+   margin: 0;
+}
+html{
+   height: 100%;
+}
+body {
+   font-family: Arial, sans-serif;
+   background-color: #ddd;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+}
+main {
+   margin: auto;
+   max-width: 800px;
+   margin-top: 40px;
+   background-color: #fff;
+   padding: 10px 30px 30px 30px;
+}
+.input{
+   margin-top: 10px;
+}
+.input, .output {
+   width: 100%;
+   font-size: 20px;
+}
+.input p, .output p{
+   margin-bottom: 10px;
+}
+hr {   
+   margin: 20px 0;
+}
+.func{
+   display: flex;
+}
+.func p{
+   font-size: 16px;
+   margin: auto;
+   margin-left: 5px;
+}
+.switch {
+   position: relative;
+   display: inline-block;
+   width: 35px;
+   height: 20px;
+   margin: 5px;
+}
+.slider {
+   position: absolute;
+   cursor: pointer;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: #ccc;
+   -webkit-transition: 0.4s;
+   transition: 0.4s;
+}
+.slider::before{
+   position: absolute;
+   background-color: white;
+   content: "";
+   height: 12px;
+   width: 12px;
+   left: 4px;
+   bottom: 4px;
+   -webkit-transition: 0.4s;
+   transition: 0.4s;
+}
+input:checked + .slider{
+   background-color: #75dad7;
+}
+input:checked + .slider::before{
+   -webkit-transform: translateX(16px);
+   -ms-transform: translateX(16px);
+   transform: translateX(16px);
+}
+textarea {
+   width: 100%;
+   height: 150px;
+   padding: 10px;
+   box-sizing: border-box;
+   width: 100%;
+   resize: none;
+   border: 1px solid #aaa;
+   font-size: 14px;
+}
+.output textarea {
+   background-color: #f0f0f0;
+   min-height: 150px;
+}
+@media screen and (max-width: 600px) {
+   *, .input, .output, textarea, .func p{
+      font-size: 13px;
+   }
+}
