@@ -199,11 +199,6 @@ function sha256(input) {
    return result;
 }
 
-document.getElementById('text-input').addEventListener('input', updateOutput);
-document.querySelector(".func #capital").addEventListener('input', updateOutput);
-document.querySelector(".func #space-between").addEventListener('input', updateOutput);
-document.querySelector(".func #binary-output").addEventListener('input', updateOutput);
-
 function updateOutput() {
    const inputText = document.getElementById('text-input').value;
    const outputBox = document.getElementById('output-box');
@@ -224,3 +219,8 @@ function updateOutput() {
 
    outputBox.value = output;
 }
+
+document.getElementById('text-input').addEventListener('input', updateOutput);
+document.querySelector(".func #capital").addEventListener('input', updateOutput);
+document.querySelector(".func #space-between").addEventListener('input', updateOutput);
+document.querySelector(".func #binary-output").addEventListener('input', updateOutput);
